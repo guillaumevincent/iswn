@@ -1,34 +1,24 @@
+import logging
 import os
 import datetime
 
-from smartconfigparser import Config
+from smartgetenv import get_bool, get_list, get_env
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CONFIG_PATH = os.path.join(BASE_DIR, 'config')
-if not os.path.exists(CONFIG_PATH):
-    os.makedirs(CONFIG_PATH)
-
-CONFIG_FILE = os.path.join(CONFIG_PATH, 'config.ini')
-config = Config()
-config.read(CONFIG_FILE)
-
-try:
-    SECRET_KEY = config.get('DJANGO', 'SECRET_KEY')
-except:
-    print('SECRET_KEY not found! Generating a new one...')
+SECRET_KEY = get_env('SECRET_KEY')
+if not SECRET_KEY:
+    logger.warning('SECRET_KEY not found! Remember to set SECRET_KEY in env variables...')
     import random
 
     SECRET_KEY = "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$^&*(-_=+)") for i in range(50)])
-    if not config.has_section('DJANGO'):
-        config.add_section('DJANGO')
-    config.set('DJANGO', 'SECRET_KEY', SECRET_KEY)
-    with open(CONFIG_FILE, 'wt') as f:
-        config.write(f)
+    logger.debug('secret key: %s' % SECRET_KEY)
 
-DEBUG = config.getboolean('DJANGO', 'DEBUG', False)
+DEBUG = get_bool('DEBUG', False)
 
-ALLOWED_HOSTS = config.getlist('DJANGO', 'ALLOWED_HOSTS', ['localhost', '127.0.0.1', '.oslab.fr'])
+ALLOWED_HOSTS = get_list('ALLOWED_HOSTS', ['localhost', '127.0.0.1', '.iswn.pro'])
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
@@ -75,12 +65,12 @@ WSGI_APPLICATION = 'iswn.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE', 'django.db.backends.postgresql_psycopg2'),
-        'NAME': os.getenv('DATABASE_NAME', 'postgres'),
-        'USER': os.getenv('DATABASE_USER', 'postgres'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
-        'HOST': os.getenv('DATABASE_HOST', 'db'),
-        'PORT': os.getenv('DATABASE_PORT', '5432'),
+        'ENGINE': get_env('DATABASE_ENGINE', 'django.db.backends.postgresql_psycopg2'),
+        'NAME': get_env('DATABASE_NAME', 'postgres'),
+        'USER': get_env('DATABASE_USER', 'postgres'),
+        'PASSWORD': get_env('DATABASE_PASSWORD', ''),
+        'HOST': get_env('DATABASE_HOST', 'db'),
+        'PORT': get_env('DATABASE_PORT', '5432'),
     }
 }
 
@@ -159,6 +149,6 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        'level': get_env('DJANGO_LOG_LEVEL', 'DEBUG'),
     }
 }
