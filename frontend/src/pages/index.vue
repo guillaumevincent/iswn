@@ -1,136 +1,44 @@
-<style>
-    #login-bar {
-        background-color: #424242;
-        height: 38px;
-        color: #F5F5F5;
-    }
-
-    #login-bar .nav-link {
-        padding-left: 1em;
-        padding-right: 1em;
-        color: inherit;
-    }
-
-    #login-bar .nav-link {
-        line-height: 38px;
-    }
-
-    #navbar {
-        background-color: white;
-        border-bottom: 1px solid #e8e8e8;
-        margin: 0;
-    }
-
-    #navbar #navbar__logo {
-        height: 36px;
-    }
-
-    #navbar .navbar {
-        padding: 1em 0;
-    }
-
-    #footer {
-        background-color: #424242;
-        color: #F5F5F5;
-        font-size: 0.8em;
-    }
-
-    #footer a {
-        color: inherit;
+<style scoped>
+    @media (min-width: 991px) {
+        .p-t-7 {
+            padding-top: 7em;
+        }
     }
 </style>
 <template>
-    <div id="landing-page">
-        <div id="login-bar">
-            <div class="container">
-                <nav class="nav nav-inline pull-xs-right">
-                    
-                    <a class="nav-link bg-primary" v-link="{ path: '/app/' }">
-                        {{ $t('index.SIGNIN') }}
-                    </a>
-                    <a class="nav-link" v-link="{ path: '/register/' }">
-                        {{ $t('index.REGISTER') }}
-                    </a>
-                    
-                </nav>
-            </div>
-        </div>
-        <div id="navbar">
-            <div class="container">
-                <nav class="navbar">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            ISWN
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="main">
-            <div class="container">
-                <h1 class="display-3 m-t-3">Amazing Product</h1>
-
-                <p class="lead m-b-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores ea laudantium
-                    mollitia nam nostrum odit.</p>
-
-                <div class="row m-b-3">
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Lorem </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid aperiam autem,
-                            dignissimos eaque, eveniet ex excepturi inventore maiores modi necessitatibus neque nesciunt
-                            odit, placeat provident quam repellendus temporibus voluptas?</p>
-                    </div>
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Lorem Ipsum</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dicta dolores ea eligendi ex
-                            fugiat incidunt magni modi, nihil nobis officia possimus quam quas quidem quisquam rerum
-                            totam unde voluptate!</p>
-                    </div>
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Ipsum</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti exercitationem in iste,
-                            iusto quaerat quam velit vitae? Aliquam aperiam architecto aspernatur delectus, doloremque
-                            minus, natus nulla quibusdam ratione repellat unde.</p>
-                    </div>
-                </div>
-                <div class="row m-b-3">
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Lorem Ipsum</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dicta dolores ea eligendi ex
-                            fugiat incidunt magni modi, nihil nobis officia possimus quam quas quidem quisquam rerum
-                            totam unde voluptate!</p>
-                    </div>
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Lorem </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid aperiam autem,
-                            dignissimos eaque, eveniet ex excepturi inventore maiores modi necessitatibus neque nesciunt
-                            odit, placeat provident quam repellendus temporibus voluptas?</p>
-                    </div>
-                    <div class="col-sm-4 m-b-3">
-                        <h4>Ipsum</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti exercitationem in iste,
-                            iusto quaerat quam velit vitae? Aliquam aperiam architecto aspernatur delectus, doloremque
-                            minus, natus nulla quibusdam ratione repellat unde.</p>
-                    </div>
-                </div>
-                <div class="text-xs-center m-b-3">
-                    <button class="btn btn-primary">let's go !</button>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <div class="container p-t-1">
-                <div class="row">
-                    <div class="col-lg-12 text-xs-center">
-                        <p>
-                            &copy; 2016 ISWN
-                            - {{ $t('footer.createdBy') }}
-                            Guillaume Vincent
-                        </p>
-                    </div>
+    <div class="vignes">
+        <div class="container">
+            <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3  p-t-7">
+                <div class="p-y-2">
+                    <h2 class="display-5">
+                        Codes Uniques Pour Le Vin
+                    </h2>
+                    <p class="lead">
+                        Récupérez des informations fiables de manière simple sur les produits viticoles que vous
+                        manipulez
+                    </p>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="formGroupExampleInput"
+                                   placeholder="Recherchez un vin">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </template>
+<script type="text/ecmascript-6">
+    import 'bootstrap/dist/css/bootstrap.css';
+    import 'font-awesome/css/font-awesome.css';
+    import 'notie/dist/notie.css';
+    import 'bootstrap/dist/js/bootstrap.js';
+    import Menu from 'components/Menu';
+
+    export default {
+        components: {
+            'menu': Menu
+        }
+    };
+</script>
+

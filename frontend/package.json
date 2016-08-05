@@ -9,39 +9,35 @@
     "test": "ava test --require babel-core/register && xo"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.13.4"
   },
   "devDependencies": {
     "ava": "^0.15.2",
     "axios": "^0.12.0",
-    "babel-core": "^6.0.0",
+    "babel-core": "^6.11.4",
     "babel-loader": "^6.0.0",
-    "babel-plugin-transform-runtime": "^6.0.0",
+    "babel-plugin-transform-runtime": "^6.8.0",
     "babel-preset-es2015": "^6.0.0",
-    "babel-preset-stage-2": "^6.11.0",
     "babel-runtime": "^6.0.0",
     "bootstrap": "^4.0.0-alpha.3",
-    "clipboard": "^1.5.12",
     "css-loader": "^0.23.1",
-    "es6-promise": "^3.2.1",
-    "express": "^4.14.0",
     "file-loader": "^0.9.0",
-    "ionicons": "^3.0.0",
-    "jquery": "^3.0.0",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.1.0",
     "json-loader": "^0.5.4",
-    "moment": "^2.13.0",
-    "nock": "^8.0.0",
-    "node-sass": "^3.8.0",
-    "notie": "^3.2.0",
-    "sass-loader": "^3.2.3",
+    "moment": "^2.14.1",
+    "node-sass": "^3.7.0",
+    "notie": "^3.9.0",
+    "pilou": "0.0.3",
+    "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-    "tether": "^1.3.2",
+    "tether": "^1.3.3",
     "url-loader": "^0.5.7",
-    "vue": "^1.0.26",
+    "vue": "^1.0.0",
     "vue-hot-reload-api": "^1.3.3",
-    "vue-html-loader": "^1.2.3",
+    "vue-html-loader": "^1.0.0",
     "vue-i18n": "^4.0.1",
-    "vue-loader": "^8.5.3",
+    "vue-loader": "^8.2.1",
     "vue-router": "^0.7.13",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
@@ -62,11 +58,7 @@
   },
   "babel": {
     "presets": [
-      "es2015",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-runtime"
+      "es2015"
     ],
     "comments": false
   }

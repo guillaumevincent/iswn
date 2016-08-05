@@ -38,7 +38,7 @@ locales.en.login = {
   logoutMessage: 'Thanks for spending some quality time with us today.',
   orLogIn: 'Already register ? Sign in',
   orRegister: 'Do not have an account ? Register',
-  LogInInfo: 'Happy to see you here again',
+  LogInInfo: 'Add your information',
   emailAndPasswordMandatory: 'Email and password are mandatory'
 };
 
@@ -60,7 +60,7 @@ locales.fr.login = {
   logoutMessage: 'Merci d\'avoir passé du temps de qualité avec nous aujourd\'hui',
   orLogIn: 'Déjà un compte ? connectez-vous',
   orRegister: 'Vous n\'avez pas de compte ? Enregistrez-vous',
-  LogInInfo: 'Content de vous revoir ici',
+  LogInInfo: 'Entrez vos identifiants',
   emailAndPasswordMandatory: 'L\'email et le mot de passe sont obligatoires'
 };
 
