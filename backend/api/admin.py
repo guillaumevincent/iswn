@@ -66,6 +66,10 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.MyUser, MyUserAdmin)
-admin.site.register(models.Employee, EmployeeAdmin)
-admin.site.register(models.Company)
+admin.site.register(models.Chateau)
+admin.site.register(models.Millesime)
+admin.site.register(models.Appellation)
+admin.site.register(models.Classement)
+admin.site.register(models.Couleur)
+admin.site.register(models.ISWN)
 admin.site.unregister(Group)

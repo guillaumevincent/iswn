@@ -57,7 +57,8 @@ class MyUser(AbstractBaseUser):
         return self.is_admin
 
     class Meta:
-        verbose_name_plural = "Users"
+        verbose_name = "Utilisateur"
+        verbose_name_plural = "Utilisateurs"
 
 
 class DateMixin(models.Model):
@@ -68,35 +69,78 @@ class DateMixin(models.Model):
         abstract = True
 
 
-class Company(DateMixin):
+class Chateau(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, unique=True)
+    nom = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return '%s' % self.nom
 
     class Meta:
-        verbose_name = "Company"
-        verbose_name_plural = "Companies"
+        verbose_name = "Chateau"
+        verbose_name_plural = "Chateaux"
 
 
-class Employee(DateMixin):
+class Millesime(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    millesime = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return '%s' % self.user.email
+        return '%d' % self.millesime
 
     class Meta:
-        verbose_name = "Employee"
-        verbose_name_plural = "Employees"
+        verbose_name = "Millesime"
+        verbose_name_plural = "Millesimes"
 
 
-def create_employee(sender, **kwargs):
-    user = kwargs["instance"]
-    if kwargs["created"]:
-        Employee.objects.create(user=user)
+class Appellation(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    nom = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.nom
+
+    class Meta:
+        verbose_name = "Appellation"
+        verbose_name_plural = "Appellations"
 
 
-post_save.connect(create_employee, sender=MyUser)
+class Classement(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    nom = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.nom
+
+    class Meta:
+        verbose_name = "Classement"
+        verbose_name_plural = "Classements"
+
+
+class Couleur(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    nom = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.nom
+
+    class Meta:
+        verbose_name = "Couleur"
+        verbose_name_plural = "Couleurs"
+
+
+class ISWN(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    iswn = models.CharField(max_length=255, null=True, blank=True)
+    chateau = models.ForeignKey(Chateau, on_delete=models.SET_NULL, null=True, blank=True)
+    millesime = models.ForeignKey(Millesime, on_delete=models.SET_NULL, null=True, blank=True)
+    appellation = models.ForeignKey(Appellation, on_delete=models.SET_NULL, null=True, blank=True)
+    classement = models.ForeignKey(Classement, on_delete=models.SET_NULL, null=True, blank=True)
+    couleur = models.ForeignKey(Couleur, on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "ISWN"
+        verbose_name_plural = "ISWN"
+
+    def __str__(self):
+        return '%s' % self.id

@@ -14,7 +14,7 @@ if not SECRET_KEY:
     import random
 
     SECRET_KEY = "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$^&*(-_=+)") for i in range(50)])
-    logger.debug('secret key: %s' % SECRET_KEY)
+    logger.warning('secret key: %s' % SECRET_KEY)
 
 DEBUG = get_bool('DEBUG', False)
 
@@ -113,6 +113,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
