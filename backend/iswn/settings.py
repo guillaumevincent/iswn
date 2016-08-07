@@ -1,3 +1,4 @@
+import configparser
 import logging
 import os
 import datetime
@@ -8,13 +9,26 @@ logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = get_env('SECRET_KEY')
-if not SECRET_KEY:
-    logger.warning('SECRET_KEY not found! Remember to set SECRET_KEY in env variables...')
+CONFIG_PATH = os.path.join(BASE_DIR, 'config')
+if not os.path.exists(CONFIG_PATH):
+    os.makedirs(CONFIG_PATH)
+
+CONFIG_FILE = os.path.join(CONFIG_PATH, 'config.ini')
+config = configparser.ConfigParser()
+config.read(CONFIG_FILE)
+
+try:
+    SECRET_KEY = config.get('DJANGO', 'SECRET_KEY')
+except:
+    logger.warning('SECRET_KEY not found! Generating a new one...')
     import random
 
     SECRET_KEY = "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$^&*(-_=+)") for i in range(50)])
-    logger.warning('secret key: %s' % SECRET_KEY)
+    if not config.has_section('DJANGO'):
+        config.add_section('DJANGO')
+    config.set('DJANGO', 'SECRET_KEY', SECRET_KEY)
+    with open(CONFIG_FILE, 'wt') as f:
+        config.write(f)
 
 DEBUG = get_bool('DEBUG', False)
 
