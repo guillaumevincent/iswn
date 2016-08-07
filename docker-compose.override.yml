@@ -3,8 +3,6 @@ services:
   backend:
     volumes:
       - ./backend:/backend
-    environment:
-      SECRET_KEY: "rwwyav18z8ipr15dvnrwwwe4kgcr7zjg"
     command: python manage.py runserver 0.0.0.0:8000
   frontend:
     volumes:
