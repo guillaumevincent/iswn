@@ -28,3 +28,5 @@ cd ..
 
 mkdir -p sources
 mv $ARCHIVE sources
+
+docker rmi $(docker images -f "dangling=true" -q)
