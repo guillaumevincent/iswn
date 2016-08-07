@@ -131,7 +131,7 @@ class Couleur(models.Model):
 
 class ISWN(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    iswn = models.CharField(max_length=255, null=True, blank=True)
+    iswn = models.CharField(max_length=255, unique=True, null=True, blank=True)
     chateau = models.ForeignKey(Chateau, on_delete=models.SET_NULL, null=True, blank=True)
     millesime = models.ForeignKey(Millesime, on_delete=models.SET_NULL, null=True, blank=True)
     appellation = models.ForeignKey(Appellation, on_delete=models.SET_NULL, null=True, blank=True)
