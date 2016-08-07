@@ -25,3 +25,6 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 cd ..
+
+mkdir -p sources
+mv $ARCHIVE sources
